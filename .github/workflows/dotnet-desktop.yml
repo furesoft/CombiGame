@@ -8,12 +8,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core
+
+    - name: install wasm tools
+      run: dotnet workload install wasm-tools
+    
+    - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 8.0.*
+        
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output build
+      
     - name: Deploy to Github Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
