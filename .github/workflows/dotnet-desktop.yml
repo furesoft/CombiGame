@@ -29,5 +29,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BASE_BRANCH: main # The branch the action should deploy from.
         BRANCH: gh-pages-from-actions # The branch the action should deploy to.
-        FOLDER: CombiGame.Browser/build/wwwroot # The folder the action should deploy.
+        FOLDER: CombiGame.Browser/bin/Release/net8.0-browser/browser-wasm/AppBundle/
         SINGLE_COMMIT: true
