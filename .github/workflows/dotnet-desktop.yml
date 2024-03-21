@@ -9,16 +9,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 8.0.*
+
     - name: install wasm tools
       run: dotnet workload install wasm-tools
 
     - name: install wasm tools experimental
       run: dotnet workload install wasi-experimental
-    
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 8.0.*
         
     - name: Publish with dotnet
       run: dotnet publish --configuration Release --output build
