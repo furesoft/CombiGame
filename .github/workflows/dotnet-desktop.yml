@@ -26,7 +26,7 @@ jobs:
     - name: Deploy to Github Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BASE_BRANCH: main # The branch the action should deploy from.
         BRANCH: gh-pages-from-actions # The branch the action should deploy to.
         FOLDER: CombiGame.Browser/bin/Release/net8.0-browser/browser-wasm/AppBundle/
