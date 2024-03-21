@@ -21,7 +21,7 @@ jobs:
       run: dotnet workload install wasi-experimental
         
     - name: Publish with dotnet
-      run: dotnet publish --configuration Release --output build
+      run: dotnet publish --configuration Release --output build CombiGame.Desktop/CombiGame.Desktop.csproj
       
     - name: Deploy to Github Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
