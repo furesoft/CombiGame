@@ -6,12 +6,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CombiGame.Views.MainView" x:CompileBindings="False"
              x:DataType="vm:MainViewModel">
-    <Grid>
-        <Canvas />
+    <Grid ColumnDefinitions="*, 150" Margin="15">
+        <Editor Name="EditorControl" DataContext="{Binding Editor.Drawing}" />
 
-        <ScrollViewer>
-            <ItemsControl Margin="25" VerticalAlignment="Top" ItemsSource="{Binding Items}" HorizontalAlignment="Right"
-                          Width="150" Height="450">
+        <ScrollViewer Grid.Column="1" Margin="25" VerticalAlignment="Top">
+            <ItemsControl ItemsSource="{Binding Items}"
+                          Width="100" Height="450">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Content="{Binding}" />
