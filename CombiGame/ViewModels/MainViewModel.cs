@@ -18,6 +18,7 @@ public partial class MainViewModel : ViewModelBase
         {
             Factory = new NodeFactory()
         };
+        Editor.Templates = Editor.Factory.CreateTemplates();
 
         Editor.Drawing = Editor.Factory.CreateDrawing();
         Editor.Drawing.SetSerializer(Editor.Serializer);

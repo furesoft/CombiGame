@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Avalonia.Controls;
 using CombiGame.Models;
 using NodeEditor.Model;
 using NodeEditor.Mvvm;
@@ -37,9 +38,9 @@ public class NodeFactory : INodeFactory
         {
             new NodeTemplateViewModel
             {
-                Title = "Rectangle",
+                Title = ItemDefinitions.PLANT.Name,
                 Template = CreateItem(ItemDefinitions.PLANT),
-                Preview = CreateItem(ItemDefinitions.PLANT)
+                Preview = null
             }
         };
     }
@@ -55,7 +56,7 @@ public class NodeFactory : INodeFactory
             Width = 50,
             Height = 50,
             Pins = new ObservableCollection<IPin>(),
-            Content = item
+            Content = new Button(){Content = item}
         };
 
         return node;
