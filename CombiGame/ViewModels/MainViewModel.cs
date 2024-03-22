@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using CombiGame.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using NodeEditor.Model;
 using NodeEditor.Mvvm;
 
 namespace CombiGame.ViewModels;
@@ -14,111 +16,15 @@ public partial class MainViewModel : ViewModelBase
     {
         AddItemCommand = new AddItemCommand(this);
 
-        Editor = new()
+        _editor = new()
         {
+            Serializer = new NodeSerializer(typeof(ObservableCollection<>)),
             Factory = new NodeFactory()
         };
-        Editor.Templates = Editor.Factory.CreateTemplates();
 
-        Editor.Drawing = Editor.Factory.CreateDrawing();
-        Editor.Drawing.SetSerializer(Editor.Serializer);
-
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.PLANT);
-        Items.Add(ItemDefinitions.WATER);
+        _editor.Templates = new List<INodeTemplate>(_editor.Factory.CreateTemplates());
+        _editor.Drawing = _editor.Factory.CreateDrawing();
+        _editor.Drawing.SetSerializer(_editor.Serializer);
     }
 
     public ObservableCollection<Item> Items { get; set; } = new();

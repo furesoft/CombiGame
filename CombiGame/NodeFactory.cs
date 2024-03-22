@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
@@ -29,6 +30,7 @@ public class NodeFactory : INodeFactory
             GridCellHeight = 15.0
         };
 
+
         return drawing;
     }
 
@@ -56,7 +58,12 @@ public class NodeFactory : INodeFactory
             Width = 50,
             Height = 50,
             Pins = new ObservableCollection<IPin>(),
-            Content = new Button(){Content = item}
+            Content = new Button {Content = item}
+        };
+
+        node.Created += (sender, args) =>
+        {
+            node.Move(Random.Shared.Next(150), Random.Shared.Next(150));
         };
 
         return node;
